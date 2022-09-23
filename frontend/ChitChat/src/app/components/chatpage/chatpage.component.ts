@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatserviceService } from '../../services/chatservice.service'
 
 // import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
@@ -11,11 +12,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chatpage.component.css']
 })
 export class ChatpageComponent implements OnInit  {
- 
-  constructor() { }
+  
+  constructor(private chatService: ChatserviceService) { }
 
  
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    //this.chatService.getUserPayload();
+    
+    await this.chatService.BringMyrecentChats().subscribe((data: any) => {
+      console.log(data);
+    }, (error: any) => {
+      console.log(error);
+    }
+    )
   }
 
 }

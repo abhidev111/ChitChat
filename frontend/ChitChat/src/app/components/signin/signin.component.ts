@@ -24,7 +24,13 @@ export class SigninComponent implements OnInit {
     this.chatService.SigninService(email, password).subscribe((userdata: any) => {
        this._toast.success('Hello world!', 'Toastr fun!');
       console.log(userdata)
-      localStorage.setItem("userdata",userdata)
+      localStorage.setItem("name", userdata.name);
+      localStorage.setItem("token", userdata.token);
+      localStorage.setItem("interests", userdata.interests);
+      localStorage.setItem("email", userdata.email);
+      localStorage.setItem("pic", userdata.pic);
+      localStorage.setItem("userdata", JSON.stringify(userdata));
+      
       this._router.navigate(['../chat'])
 
     }, (error: any) => {

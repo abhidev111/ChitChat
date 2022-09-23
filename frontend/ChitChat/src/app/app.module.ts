@@ -16,8 +16,11 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card'; 
+import { MatCardModule } from '@angular/material/card'; 
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ToastrModule } from 'ngx-toastr';
+
+import { CommonInterceptor } from '../app/AuthGuards/common.interceptor'
 
 
 @NgModule({
@@ -38,13 +41,19 @@ import { ToastrModule } from 'ngx-toastr';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatProgressBarModule,
 
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [],
+  providers: [{
+    provide : HTTP_INTERCEPTORS,
+    useClass : CommonInterceptor,
+    multi : true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
