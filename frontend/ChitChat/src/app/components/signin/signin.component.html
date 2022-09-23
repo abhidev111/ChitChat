@@ -1,5 +1,20 @@
 
 
-<div style="border: 2px solid red; width :50%; height:100px; margin-top: 20px;">
-        bring this to center, this is sign-in form
+
+<div class="container">
+    <div class="card d-flex align-items-center center1">
+        <form class="example-form ">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input #email matInput placeholder="Username">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input #password type="password" matInput placeholder="Password">
+            </mat-form-field>
+        </form>
+        
+        <button mat-raised-button color="primary" value="login" (click)="login(email.value ,password.value)">Login</button> 
+    </div>
 </div>
+

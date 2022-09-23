@@ -11,6 +11,14 @@ import { ChatpageComponent } from './components/chatpage/chatpage.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ToastrModule } from 'ngx-toastr';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +32,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
+    MatFormFieldModule,
+    MatInputModule,
+
+    HttpClientModule,
+    FormsModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]
