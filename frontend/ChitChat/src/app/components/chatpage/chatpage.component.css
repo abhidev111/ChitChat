@@ -1,0 +1,110 @@
+.container{
+    display: flex;
+    padding: 5px;
+    position: relative;
+}
+.sideBar{
+    border: 2px solid rebeccapurple;
+    width :30%;
+    height :90vh;
+    margin: 5px;
+
+}
+.chat{
+    border: 2px solid rgb(153, 71, 51);
+        width: 70%;
+        height: 90vh;
+        float: right;
+        margin: 5px;
+        display: block;
+}
+.messages{
+    border: 2px solid rgb(153, 71, 51);
+    width: 100%;
+    height: 80vh;
+    overflow: scroll;
+}
+.singleMsgs{
+    overflow: scroll;
+}
+.singleMsgs mat-card{
+    width: fit-content;
+    margin: 2px;
+    margin-left: 10px;
+}
+
+.typeMsg{
+    border: 2px solid rgb(153, 71, 51);
+        width: 100%;
+        height: 9vh;
+}
+.typeMsg button{
+    float: right;
+    height: 50px;
+    width: 50px;
+    margin-right: 50px;
+}
+.typeMsg input{
+    width: 90%;
+    height: 40px;
+}
+
+
+
+/* //////////////// */
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+/* //////////////// */
+
+.peopleDisplay{
+    border: 2px solid rgb(22, 11, 34);
+    width: 95%;
+    height: 88%;
+    overflow: scroll;
+    padding: auto;
+    margin: auto;
+    display: block;
+}
+
+mat-card img{
+    height: 50px;
+    width : 50px;
+    border-radius: 50%;
+}
+mat-card mat-card-title{
+    font-size:medium;
+}
+.center1 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #000;
+    padding: 20px;
+}
+.pplSuggestion1{
+    position: absolute;
+    z-index: 100;
+    width: 30%;
+    height: 400px;
+    border: 2px solid rgb(22, 11, 34);
+    
+}
+
+.pplSuggestion2{
+    overflow-y: scroll;
+    /* width: 390px;
+        height: 390px; */
+        width: 95%;
+        height: 88%;
+        border: 2px solid rgb(22, 11, 34);
+        margin: auto;
+        margin-top: 20px;
+}

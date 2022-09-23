@@ -12,10 +12,11 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card'; 
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -36,9 +37,11 @@ import { ToastrModule } from 'ngx-toastr';
 
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
 
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],

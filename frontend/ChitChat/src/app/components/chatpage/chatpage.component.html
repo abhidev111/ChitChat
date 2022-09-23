@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="sideBar">
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Search</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="cricket / Abhi / abhi@example.com"
+        />
+        <mat-hint
+          >Enter interests / name / email of person you want to chat
+          with</mat-hint
+        >
+      </mat-form-field>
+    </form>
+    <div class="peopleDisplay">
+      <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]">
+        <mat-card class="example-card">
+          <mat-card-title-group>
+            <img
+              mat-card-sm-image
+              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            />
+            <mat-card-title>Shiba Inu</mat-card-title>
+            <mat-card-subtitle> last msg here</mat-card-subtitle>
+          </mat-card-title-group>
+          <!-- <mat-card-content>
+            last msg here
+          </mat-card-content> -->
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat">
+    <div class="messages">
+        <div class="singleMsgs" *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]">
+            <mat-card>Message ...</mat-card>
+            </div>
+    </div>
+    <div class="typeMsg">
+        <input type="text" placeholder="Enter your Message">
+        <button style="">send</button>
+    </div>
+
+  </div>
+
+  <!-- <div class="pplSuggestion1 center1">
+    <button style="float: right">.X.</button>
+
+    <div class="pplSuggestion2">
+      <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]">
+        <mat-card class="example-card">
+          <mat-card-title-group>
+            <img
+              mat-card-sm-image
+              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            />
+            <mat-card-title>Shiba Inu</mat-card-title>
+            <mat-card-subtitle> last msg here</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card>
+      </div>
+    </div>
+  </div> -->
+</div>
