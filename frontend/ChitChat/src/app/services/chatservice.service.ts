@@ -41,6 +41,19 @@ export class ChatserviceService {
     return this.http.get<any>(url);
   } 
   
+  sndMessage(msg:String, chatId:String) {
+    let url = "http://localhost:8000/api/message";
+    return this.http.post<any>(url,{
+    content : msg,
+    chatId : chatId
+});
+  }
+
+  searchPpl(search:String) { ///http://localhost:8000/api/user?search=musi
+    let url = "http://localhost:8000/api/user?search="+search;
+    return this.http.get<any>(url);
+  }
+
    setToken(token : string){
     localStorage.setItem('token',token);
     
@@ -77,7 +90,7 @@ export class ChatserviceService {
       return payload.exp > Date.now()/1000;
     }
     return false;
-    
   }
+  
 }
 

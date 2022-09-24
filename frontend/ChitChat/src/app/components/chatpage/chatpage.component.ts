@@ -14,9 +14,13 @@ import { ChatserviceService } from '../../services/chatservice.service'
 export class ChatpageComponent implements OnInit  {
   messages: any = [];
   chat: any = [];
+  SearchChat: any = [];
   loggedInUID = localStorage.getItem('loggedInUID');
   otherGuyName: String = "";
   otherGuyPic: String = "";
+  ChatId: String = "";
+  toggleSwitch: Boolean = false;
+  found: Boolean = true;
   constructor(private chatService: ChatserviceService) { }
 
  
@@ -45,6 +49,7 @@ export class ChatpageComponent implements OnInit  {
       this.messages = data;
       this.otherGuyName = otherGuyName;
       this.otherGuyPic = otherGuyPic
+      this.ChatId = chatId
       // console.log("see beloww")
       // console.log(data)
       // for (let i = 0; i < this.messages.length; i++){
@@ -61,6 +66,36 @@ export class ChatpageComponent implements OnInit  {
   }
   findOtherGuyPic(users:any) {
     return users[0]._id == this.loggedInUID ? users[1].pic : users[0].pic
+  }
+
+  sendMessage(mesg: String) {
+    if (this.ChatId != "" && mesg != "") {
+      this.chatService.sndMessage(mesg, this.ChatId).subscribe((data: any) => {
+        console.log(data);
+        this.messages.push(data)
+      })
+    }
+    else {
+      console.log(this.ChatId , mesg)
+      console.log("chatId not found or msg empty")
+      return;
+    }
+  }
+  
+  SearchUser(searchParam: String) {
+    this.chatService.searchPpl(searchParam).subscribe((data: any) => {
+      console.log(data)
+      this.found = true
+      this.SearchChat = data
+      if (data.length == 0)
+          this.found =false
+      this.toggleSwitch = true;
+    },(error: any) => {
+      console.log(error)
+    })
+  }
+  toggler() {
+    this.toggleSwitch = !this.toggleSwitch;
   }
 
 }

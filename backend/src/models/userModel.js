@@ -8,9 +8,8 @@ const userModel = mongoose.Schema(
     password: { type: String, required: true },
     pic: {
       type: String,
-      default:
-        "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
-    },
+      default: "https://material.angular.io/assets/img/examples/shiba2.jpg",
+    }, //https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg
   },
   {
     timestamps: true,

@@ -9,12 +9,15 @@
     height :90vh;
     margin: 5px;
     background-image: url(../../../assets/qwd83nc4xxf41.webp);
+    
 }
+
 .sideBar mat-card{
     border-radius: 15px 15px;
     margin-top:5px ;
     background-color: rgb(228, 225, 225);
 }
+
 .chat{
     border: 2px solid rgb(153, 71, 51);
         width: 70%;
@@ -27,32 +30,45 @@
 .messages{
     border: 2px solid rgb(153, 71, 51);
     width: 100%;
-    height: 80vh;
-    overflow: scroll;
+    height: 72vh;
+    overflow-y: scroll;
+    
+}
+.messages::-webkit-scrollbar {
+    display: none;
 }
 .singleMsgs{
     overflow: scroll;
 }
+.singleMsgs::-webkit-scrollbar {
+    display: none;
+}
 .singleMsgs mat-card{
     width: fit-content;
-    margin: 5px 10px 0 10px;
+    margin: 3px 10px 3px 10px;
     border-radius:15px 15px;
+    max-width: 70%;
 }
 
 .typeMsg{
     border: 2px solid rgb(153, 71, 51);
         width: 100%;
         height: 9vh;
+        text-align: center;
+        margin-top: 5px;
+        
 }
 .typeMsg button{
     float: right;
     height: 50px;
-    width: 50px;
-    margin-right: 50px;
+    width: 7%;
+    margin: 0 1% 0 0.5%;
+
 }
 .typeMsg input{
     width: 90%;
-    height: 40px;
+    height: 50px;
+    font-size: 17px;
 }
 
 
@@ -62,9 +78,20 @@
     min-width: 150px;
     max-width: 500px;
     width: 100%;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
 }
-
-.example-full-width {
+.example-form button{
+    height: 50px;
+    width: 100px;
+    background-color: rgb(62, 142, 115);
+    color: aliceblue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    /* border-radius: 20px; */
+    border: none;
+}
+.example-width {
     width: 100%;
 }
 /* //////////////// */
@@ -73,10 +100,13 @@
     /* border: 2px solid rgb(22, 11, 34); */
     width: 95%;
     height: 88%;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: auto;
     margin: auto;
     display: block;
+}
+.peopleDisplay::-webkit-scrollbar {
+    display: none;
 }
 
 mat-card img{
@@ -95,13 +125,32 @@ mat-card mat-card-title{
     border: 1px solid #000;
     padding: 20px;
 }
-.pplSuggestion1{
+.pplSuggestion0{
     position: absolute;
-    z-index: 100;
-    width: 30%;
-    height: 400px;
-    border: 2px solid rgb(22, 11, 34);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 9;
+background-color: rgba(240, 237, 237, 0.091);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     
+}
+.pplSuggestion1{
+    /* position: absolute; */
+    
+    z-index: 10;
+    width: 30%;
+    height: 600px;
+    /* border: 2px solid rgb(22, 11, 34); */
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    
+}
+.pplSuggestion1 p{
+    display: inline;
 }
 
 .pplSuggestion2{
@@ -110,9 +159,14 @@ mat-card mat-card-title{
         height: 390px; */
         width: 95%;
         height: 88%;
-        border: 2px solid rgb(22, 11, 34);
+        /* border: 2px solid rgb(22, 11, 34); */
         margin: auto;
         margin-top: 20px;
+}
+
+.pplSuggestion2 mat-card{
+    background-color: rgb(231, 231, 231);
+    margin: 7px;
 }
 
 .sentMsg{
@@ -127,7 +181,7 @@ mat-card mat-card-title{
 }
 
 .otherPersonDetail{
-    height: 60px;
+    height: 8vh;
     background-color: rgb(167, 164, 164);
     display: flex;
     font-family: Georgia, 'Times New Roman', Times, serif;

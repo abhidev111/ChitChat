@@ -1,29 +1,54 @@
-<div class="container">
+<!-- <div *ngIf="toggleSwitch" class="pplSuggestion0">
+    <div  class="pplSuggestion1 center1">
+      <button style="float: right" (click)="toggler()">.X.</button>
+
+      <div class="pplSuggestion2">
+        <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]">
+          <mat-card class="example-card">
+            <mat-card-title-group>
+              <img
+                mat-card-sm-image
+                src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+              />
+              <mat-card-title>Shiba Inu</mat-card-title>
+              <mat-card-subtitle> last msg here</mat-card-subtitle>
+            </mat-card-title-group>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<div class="container" >
   <div class="sideBar">
-    <form class="example-form">
-      <mat-form-field class="example-full-width" appearance="fill">
+    <form class="example-form" style="display: flex">
+      <mat-form-field class="example-width" appearance="fill">
         <mat-label>Search</mat-label>
         <input
           type="text"
           matInput
           placeholder="cricket / Abhi / abhi@example.com"
+          #inp
         />
         <mat-hint
           >Enter interests / name / email of person you want to chat
           with</mat-hint
         >
       </mat-form-field>
+      <button (click)="SearchUser(inp.value)">Search</button>
     </form>
     <div class="peopleDisplay">
       <div *ngFor="let i of chat">
-        <mat-card class="example-card" (click)="getMsg(i._id, i.otherGuy ,i.otherGuyPic)">
+        <mat-card
+          class="example-card"
+          (click)="getMsg(i._id, i.otherGuy, i.otherGuyPic)"
+        >
           <mat-card-title-group>
-            <img
-              mat-card-sm-image
-              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            />
-            <mat-card-title>{{i.otherGuy}}</mat-card-title>
-            <mat-card-subtitle> {{i.latestMessage.content}}</mat-card-subtitle>
+            <img [src]="i.otherGuyPic" />
+            <mat-card-title>{{ i.otherGuy }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ i.latestMessage.content }}</mat-card-subtitle
+            >
           </mat-card-title-group>
           <!-- <mat-card-content>
             last msg here
@@ -34,43 +59,53 @@
   </div>
 
   <div class="chat">
-    <div class="messages">
-      <div class="otherPersonDetail">
-        <div class="innerPic">
-          <img [src]="otherGuyPic"/>
-        </div>
-        <div class="innerText">
-            {{otherGuyName}}
-        </div>
+    <div class="otherPersonDetail">
+      <div class="innerPic">
+        <img [src]="otherGuyPic" />
       </div>
-        <div class="singleMsgs" *ngFor="let i of messages">
-            <mat-card *ngIf="loggedInUID == i.sender._id" class="sentMsg">{{i.content}}</mat-card>
-            <mat-card *ngIf="loggedInUID != i.sender._id" class="recvMsg">{{i.content}}</mat-card>
-            </div>
+      <div class="innerText">
+        {{ otherGuyName }}
+      </div>
+    </div>
+    <div class="messages">
+      <!-- <div id="forMsgScroll"> -->
+      <div class="singleMsgs" *ngFor="let i of messages">
+        <mat-card *ngIf="loggedInUID == i.sender._id" class="sentMsg">{{
+          i.content
+        }}</mat-card>
+        <mat-card *ngIf="loggedInUID != i.sender._id" class="recvMsg">{{
+          i.content
+        }}</mat-card>
+      </div>
+      <!-- </div> -->
     </div>
     <div class="typeMsg">
-        <input type="text" placeholder="Enter your Message">
-        <button style="">send</button>
+      <input type="text" placeholder="Enter your Message" #inp1 />
+      <button (click)="sendMessage(inp1.value); inp1.value = ''">
+        send
+      </button>
     </div>
-
   </div>
+  
+</div>
+<div *ngIf="toggleSwitch" class="pplSuggestion0">
+    <div  class="pplSuggestion1 center1">
+      <p>Search results :</p>
+      <button style="float: right" (click)="toggler()">.X.</button>
 
-  <!-- <div class="pplSuggestion1 center1">
-    <button style="float: right">.X.</button>
-
-    <div class="pplSuggestion2">
-      <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]">
-        <mat-card class="example-card">
-          <mat-card-title-group>
-            <img
-              mat-card-sm-image
-              src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            />
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle> last msg here</mat-card-subtitle>
-          </mat-card-title-group>
-        </mat-card>
+      <div class="pplSuggestion2" *ngIf="found">
+        <div *ngFor="let i of SearchChat">
+          <mat-card class="example-card">
+            <mat-card-title-group>
+              <img [src]="i.pic"/>
+              <mat-card-title>{{i.name}}</mat-card-title>
+              <mat-card-subtitle>Interests : {{i.interests}}</mat-card-subtitle>
+            </mat-card-title-group>
+          </mat-card>
+        </div>
+      </div>
+      <div *ngIf="!found ">
+          NO PEOPLE WITH PROVIDED INPUT FOUND
       </div>
     </div>
-  </div> -->
-</div>
+  </div>
