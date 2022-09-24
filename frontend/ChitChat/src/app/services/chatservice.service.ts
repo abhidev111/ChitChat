@@ -35,6 +35,11 @@ export class ChatserviceService {
   BringMyrecentChats() {
     return this.http.get<any>('http://localhost:8000/api/chat/');
   }
+
+  bringAllMsgsOfChat(chatId: String) {
+    let url = 'http://localhost:8000/api/message/' + chatId;
+    return this.http.get<any>(url);
+  } 
   
    setToken(token : string){
     localStorage.setItem('token',token);

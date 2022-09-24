@@ -8,7 +8,12 @@
     width :30%;
     height :90vh;
     margin: 5px;
-
+    background-image: url(../../../assets/qwd83nc4xxf41.webp);
+}
+.sideBar mat-card{
+    border-radius: 15px 15px;
+    margin-top:5px ;
+    background-color: rgb(228, 225, 225);
 }
 .chat{
     border: 2px solid rgb(153, 71, 51);
@@ -17,6 +22,7 @@
         float: right;
         margin: 5px;
         display: block;
+        background-image: url(../../../assets/msgBck.png);
 }
 .messages{
     border: 2px solid rgb(153, 71, 51);
@@ -29,8 +35,8 @@
 }
 .singleMsgs mat-card{
     width: fit-content;
-    margin: 2px;
-    margin-left: 10px;
+    margin: 5px 10px 0 10px;
+    border-radius:15px 15px;
 }
 
 .typeMsg{
@@ -64,7 +70,7 @@
 /* //////////////// */
 
 .peopleDisplay{
-    border: 2px solid rgb(22, 11, 34);
+    /* border: 2px solid rgb(22, 11, 34); */
     width: 95%;
     height: 88%;
     overflow: scroll;
@@ -107,4 +113,42 @@ mat-card mat-card-title{
         border: 2px solid rgb(22, 11, 34);
         margin: auto;
         margin-top: 20px;
+}
+
+.sentMsg{
+    background-color: rgb(255, 255, 255);
+    float: right;
+    /* margin: 30px; */
+    margin-right: 20px;
+}
+.recvMsg {
+    background-color: rgb(124, 249, 172);
+    margin: 30px;
+}
+
+.otherPersonDetail{
+    height: 60px;
+    background-color: rgb(167, 164, 164);
+    display: flex;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+        color: aliceblue;
+        font-size: 30px;
+      
+}
+
+.innerPic img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.innerText{
+    
+        /* margin: 5px; */
+        text-align: center;
+        margin-top: 20px;
+        
+           
+        
 }

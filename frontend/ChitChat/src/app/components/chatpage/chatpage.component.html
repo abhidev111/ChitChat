@@ -15,15 +15,15 @@
       </mat-form-field>
     </form>
     <div class="peopleDisplay">
-      <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]">
-        <mat-card class="example-card">
+      <div *ngFor="let i of chat">
+        <mat-card class="example-card" (click)="getMsg(i._id, i.otherGuy ,i.otherGuyPic)">
           <mat-card-title-group>
             <img
               mat-card-sm-image
               src="https://material.angular.io/assets/img/examples/shiba2.jpg"
             />
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle> last msg here</mat-card-subtitle>
+            <mat-card-title>{{i.otherGuy}}</mat-card-title>
+            <mat-card-subtitle> {{i.latestMessage.content}}</mat-card-subtitle>
           </mat-card-title-group>
           <!-- <mat-card-content>
             last msg here
@@ -35,8 +35,17 @@
 
   <div class="chat">
     <div class="messages">
-        <div class="singleMsgs" *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]">
-            <mat-card>Message ...</mat-card>
+      <div class="otherPersonDetail">
+        <div class="innerPic">
+          <img [src]="otherGuyPic"/>
+        </div>
+        <div class="innerText">
+            {{otherGuyName}}
+        </div>
+      </div>
+        <div class="singleMsgs" *ngFor="let i of messages">
+            <mat-card *ngIf="loggedInUID == i.sender._id" class="sentMsg">{{i.content}}</mat-card>
+            <mat-card *ngIf="loggedInUID != i.sender._id" class="recvMsg">{{i.content}}</mat-card>
             </div>
     </div>
     <div class="typeMsg">
