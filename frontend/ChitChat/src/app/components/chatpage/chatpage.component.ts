@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChatserviceService } from '../../services/chatservice.service'
+import {io,Socket} from 'socket.io-client';
+
 
 // import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
@@ -12,6 +14,9 @@ import { ChatserviceService } from '../../services/chatservice.service'
   styleUrls: ['./chatpage.component.css']
 })
 export class ChatpageComponent implements OnInit  {
+  @ViewChild('scrollMe')
+  private myScrollContainer!: ElementRef;
+
   messages: any = [];
   chat: any = [];
   SearchChat: any = [];
@@ -21,11 +26,37 @@ export class ChatpageComponent implements OnInit  {
   ChatId: String = "";
   toggleSwitch: Boolean = false;
   found: Boolean = true;
-  constructor(private chatService: ChatserviceService) { }
+  socketConnected: Boolean = false;
+  notifyMessageQue :any = []
+  socket!: Socket;
+  ENDPOINT= 'http://localhost:8000'
+   
+  
+      
+   
+  constructor(private chatService: ChatserviceService) {}
 
  
   async ngOnInit(): Promise<void> {
-    //this.chatService.getUserPayload();
+    this.scrollToBottom();
+    this.socket = io((this.ENDPOINT));
+    this.socket.emit("setup", this.loggedInUID)
+    this.socket.on("connection", () => {
+      this.socketConnected = true;
+    })
+
+    this.socket.on("message recieved", (newMessageRecieved) => {
+      //this.ChatId == "" ||
+      console.log("see new msg")
+      console.log(newMessageRecieved)
+      if ( this.ChatId != newMessageRecieved.chat._id) {
+        this.chat[this.chat.findIndex((x: any) => x._id == newMessageRecieved.chat._id)].notification = true;
+        
+      }
+      else
+        this.messages.push(newMessageRecieved)
+      this.chat[this.chat.findIndex((x:any) => x._id == newMessageRecieved.chat._id)].latestMessage.content = newMessageRecieved.content
+    })
     
     await this.chatService.BringMyrecentChats().subscribe((data: any) => {
       console.log(data);
@@ -36,12 +67,21 @@ export class ChatpageComponent implements OnInit  {
         this.chat[i] = (data[i])
         this.chat[i].otherGuy = this.findOtherGuy(data[i].users);
         this.chat[i].otherGuyPic = this.findOtherGuyPic(data[i].users);
+        this.chat[i].notification = false;
       }
     }, (error: any) => {
       console.log(error);
     }
     )
   }
+  ngAfterViewChecked() {        
+        this.scrollToBottom();        
+    }
+  scrollToBottom(): void {
+        try {
+            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+        } catch(err) { }                 
+    }
 
   async getMsg(chatId : String, otherGuyName: String, otherGuyPic:String) {
     await this.chatService.bringAllMsgsOfChat(chatId).subscribe((data) => {
@@ -50,11 +90,13 @@ export class ChatpageComponent implements OnInit  {
       this.otherGuyName = otherGuyName;
       this.otherGuyPic = otherGuyPic
       this.ChatId = chatId
+      this.chat[this.chat.findIndex((x:any) => x._id == chatId)].notification = false;
       // console.log("see beloww")
       // console.log(data)
       // for (let i = 0; i < this.messages.length; i++){
       //   console.log(this.messages[i]._id)
       // }
+      this.socket.emit("join chat", chatId);
     },(error: any) => {
       console.log(error);
     })
@@ -64,6 +106,7 @@ export class ChatpageComponent implements OnInit  {
     console.log(users)
     return users[0]._id == this.loggedInUID ? users[1].name : users[0].name
   }
+
   findOtherGuyPic(users:any) {
     return users[0]._id == this.loggedInUID ? users[1].pic : users[0].pic
   }
@@ -73,6 +116,7 @@ export class ChatpageComponent implements OnInit  {
       this.chatService.sndMessage(mesg, this.ChatId).subscribe((data: any) => {
         console.log(data);
         this.messages.push(data)
+        this.socket.emit('new message',data)
       })
     }
     else {
@@ -80,6 +124,7 @@ export class ChatpageComponent implements OnInit  {
       console.log("chatId not found or msg empty")
       return;
     }
+
   }
   
   SearchUser(searchParam: String) {
@@ -114,13 +159,12 @@ export class ChatpageComponent implements OnInit  {
 )
       
       */
-      this.chat = this.chat.filter((value:any, index:any, self:any) => 
+      this.chat = this.chat.filter((value:any, index:any, self:any) =>  // code to remove duplicates from chat array
         index === self.findIndex((t:any) =>(
             t._id === value._id
         )
       ))
 
-      ///
       this.toggler();
       this.getMsg(data._id, this.chat[0].otherGuy, this.chat[0].otherGuyPic)
     }, (error: any)=>{

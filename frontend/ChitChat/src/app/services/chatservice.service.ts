@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { UserDetails } from '../model';
 import { environment } from '../environment'
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -48,6 +49,11 @@ export class ChatserviceService {
     chatId : chatId
 });
   }
+
+  //socket message
+  // getMessage() {
+  //   return 
+  // }
 
   searchPpl(search:String) { ///http://localhost:8000/api/user?search=musi
     let url = "http://localhost:8000/api/user?search="+search;

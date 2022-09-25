@@ -49,10 +49,11 @@
             <mat-card-subtitle *ngIf="i.latestMessage">
               {{ i.latestMessage.content }}</mat-card-subtitle
             >
+            <mat-card-subtitle *ngIf="!i.latestMessage">
+              Click to initiate chat</mat-card-subtitle
+            >
+            <div *ngIf="i.notification"> </div>
           </mat-card-title-group>
-          <!-- <mat-card-content>
-            last msg here
-          </mat-card-content> -->
         </mat-card>
       </div>
     </div>
@@ -67,7 +68,7 @@
         {{ otherGuyName }}
       </div>
     </div>
-    <div class="messages">
+    <div class="messages" #scrollMe [scrollTop]="scrollMe.scrollHeight">
       <!-- <div id="forMsgScroll"> -->
       <div class="singleMsgs" *ngFor="let i of messages">
         <mat-card *ngIf="loggedInUID == i.sender._id" class="sentMsg">{{

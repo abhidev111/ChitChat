@@ -78,19 +78,20 @@
 
 /* //////////////// */
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
+    /* min-width: 150px; */
+    /* max-width: 500px; */
     width: 100%;
     background-color: rgb(255, 255, 255);
     margin-bottom: 10px;
 }
 .example-form button{
     height: 50px;
-    width: 100px;
+    /* width: 100px; */
     background-color: rgb(62, 142, 115);
     color: aliceblue;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 20px;
+    font-size: 150%;
+    padding:0 5px 0 5px ;
     /* border-radius: 20px; */
     border: none;
 }
@@ -119,6 +120,14 @@ mat-card img{
 }
 mat-card mat-card-title{
     font-size:medium;
+}
+
+mat-card-title-group div{
+    display: inline;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: rgb(86, 209, 55);
 }
 .center1 {
     position: absolute;
@@ -170,6 +179,7 @@ background-color: rgba(240, 237, 237, 0.091);
 .pplSuggestion2 mat-card{
     background-color: rgb(231, 231, 231);
     margin: 7px;
+    cursor: pointer;
 }
 
 .sentMsg{
