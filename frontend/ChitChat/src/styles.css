@@ -11,3 +11,6 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-image: url(./assets/background.jpg);
     }
+body::-webkit-scrollbar {
+    display: none;
+}

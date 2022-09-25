@@ -46,7 +46,7 @@
           <mat-card-title-group>
             <img [src]="i.otherGuyPic" />
             <mat-card-title>{{ i.otherGuy }}</mat-card-title>
-            <mat-card-subtitle>
+            <mat-card-subtitle *ngIf="i.latestMessage">
               {{ i.latestMessage.content }}</mat-card-subtitle
             >
           </mat-card-title-group>
@@ -80,10 +80,12 @@
       <!-- </div> -->
     </div>
     <div class="typeMsg">
-      <input type="text" placeholder="Enter your Message" #inp1 />
+      
+      <input type="text" placeholder="Enter your Message" #inp1 (keydown.enter)="sendMessage(inp1.value); inp1.value = ''" />
       <button (click)="sendMessage(inp1.value); inp1.value = ''">
         send
       </button>
+    
     </div>
   </div>
   
@@ -95,7 +97,7 @@
 
       <div class="pplSuggestion2" *ngIf="found">
         <div *ngFor="let i of SearchChat">
-          <mat-card class="example-card">
+          <mat-card class="example-card" (click)="establishChat(i._id)">
             <mat-card-title-group>
               <img [src]="i.pic"/>
               <mat-card-title>{{i.name}}</mat-card-title>

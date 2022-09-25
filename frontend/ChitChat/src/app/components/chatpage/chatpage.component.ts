@@ -94,6 +94,40 @@ export class ChatpageComponent implements OnInit  {
       console.log(error)
     })
   }
+
+  establishChat(Id: String) {
+    this.chatService.estblishChat(Id).subscribe((data: any) => {
+      console.log(data)
+      // if (this.chat.includes(data)) {
+      //   this.chat = [...new Set(this.chat)]
+      //   console.log("duplicate idiyooooooo")
+      //  }
+        this.chat.unshift(data)
+        this.chat[0].otherGuy = this.findOtherGuy(data.users);
+        this.chat[0].otherGuyPic = this.findOtherGuyPic(data.users);
+      /// wierd logic
+      /*
+      obj.arr = obj.arr.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+    t.place === value.place && t.name === value.name
+  ))
+)
+      
+      */
+      this.chat = this.chat.filter((value:any, index:any, self:any) => 
+        index === self.findIndex((t:any) =>(
+            t._id === value._id
+        )
+      ))
+
+      ///
+      this.toggler();
+      this.getMsg(data._id, this.chat[0].otherGuy, this.chat[0].otherGuyPic)
+    }, (error: any)=>{
+      console.log(error)
+    })
+  }
+
   toggler() {
     this.toggleSwitch = !this.toggleSwitch;
   }

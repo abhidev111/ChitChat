@@ -54,6 +54,11 @@ export class ChatserviceService {
     return this.http.get<any>(url);
   }
 
+  estblishChat(Id: String) {
+    let url = "http://localhost:8000/api/chat"
+      return this.http.post<any>(url , {userId :Id})
+  }
+  
    setToken(token : string){
     localStorage.setItem('token',token);
     
