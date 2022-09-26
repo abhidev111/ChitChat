@@ -22,7 +22,7 @@ export class SigninComponent implements OnInit {
 
   login( email:String ,  password:String) {
     this.chatService.SigninService(email, password).subscribe((userdata: any) => {
-       this._toast.success('Hello world!', 'Toastr fun!');
+       this._toast.success('Success', "You've logged in successfully!!");
       console.log(userdata)
       localStorage.setItem("loggedInUID", userdata._id);
       localStorage.setItem("name", userdata.name);
@@ -33,7 +33,7 @@ export class SigninComponent implements OnInit {
       localStorage.setItem("userdata", JSON.stringify(userdata));
       
       this._router.navigate(['../chat'])
-
+      this.chatService.showlogOutBtn()
     }, (error: any) => {
       console.log(error.status)
       if(error.status==403)

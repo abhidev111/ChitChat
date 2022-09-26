@@ -30,12 +30,11 @@
           placeholder="cricket / Abhi / abhi@example.com"
           #inp
         />
-        <mat-hint
+        <!-- <mat-hint
           >Enter interests / name / email of person you want to chat
-          with</mat-hint
-        >
+          with</mat-hint> -->
       </mat-form-field>
-      <button (click)="SearchUser(inp.value)">Search</button>
+      <button (click)="SearchUser(inp.value); inp.value = ''">Search</button>
     </form>
     <div class="peopleDisplay">
       <div *ngFor="let i of chat">
@@ -44,15 +43,21 @@
           (click)="getMsg(i._id, i.otherGuy, i.otherGuyPic)"
         >
           <mat-card-title-group>
+            
             <img [src]="i.otherGuyPic" />
             <mat-card-title>{{ i.otherGuy }}</mat-card-title>
-            <mat-card-subtitle *ngIf="i.latestMessage">
+            <mat-card-subtitle *ngIf="i.latestMessage && !i.notification">
               {{ i.latestMessage.content }}</mat-card-subtitle
+            >
+            <mat-card-subtitle *ngIf="i.latestMessage && i.notification">
+             <b>{{ i.latestMessage.content }} </b> </mat-card-subtitle
             >
             <mat-card-subtitle *ngIf="!i.latestMessage">
               Click to initiate chat</mat-card-subtitle
             >
-            <div *ngIf="i.notification"> </div>
+            
+            <div *ngIf="i.notification">New <mat-icon>sms</mat-icon></div>
+            
           </mat-card-title-group>
         </mat-card>
       </div>

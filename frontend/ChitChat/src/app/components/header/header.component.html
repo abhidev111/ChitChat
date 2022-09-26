@@ -1,6 +1,8 @@
 
 <div class="top" >
+       <a routerLink="../signin" *ngIf="isLoggedIn$ | async"  style="float: right;" (click)="clearLocalStorageAndLogout()"><button >  Logout</button></a>
        <h1>Chit-Chat</h1>
+       
 </div>
 <mat-progress-bar *ngIf="loading$ | async" [mode]="'indeterminate'" color="warn">
 </mat-progress-bar>

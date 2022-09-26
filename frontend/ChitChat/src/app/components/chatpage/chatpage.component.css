@@ -8,7 +8,7 @@
     width :30%;
     height :90vh;
     margin: 5px;
-    background-image: url(../../../assets/qwd83nc4xxf41.webp);
+    /* background-image: url(../../../assets/qwd83nc4xxf41.webp); */
     
 }
 
@@ -17,7 +17,9 @@
     margin-top:5px ;
     background-color: rgb(228, 225, 225);
 }
-
+/* .sideBar::-webkit-scrollbar {
+    display: none;
+} */
 .chat{
     /* border: 2px solid rgb(153, 71, 51); */
         width: 70%;
@@ -27,6 +29,7 @@
         display: block;
         background-image: url(../../../assets/msgBck.png);
 }
+
 .messages{
     /* border: 2px solid rgb(153, 71, 51); */
     width: 100%;
@@ -47,6 +50,7 @@
     width: fit-content;
     margin: 3px 10px 3px 10px;
     max-width: 70%;
+    font-size: 15px;
 }
 
 .typeMsg {
@@ -83,16 +87,17 @@
     width: 100%;
     background-color: rgb(255, 255, 255);
     margin-bottom: 10px;
+    border-radius: 20px;
 }
 .example-form button{
-    height: 50px;
+    height: 55px;
     /* width: 100px; */
     background-color: rgb(62, 142, 115);
     color: aliceblue;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 150%;
     padding:0 5px 0 5px ;
-    /* border-radius: 20px; */
+    border-radius: 0 20px 20px 0;
     border: none;
 }
 .example-width {
@@ -114,20 +119,24 @@
 }
 
 mat-card img{
+    
     height: 50px;
     width : 50px;
     border-radius: 50%;
+    
 }
 mat-card mat-card-title{
     font-size:medium;
 }
 
 mat-card-title-group div{
-    display: inline;
+    /* display: inline; */
+    position: absolute;
+    margin-left: 70%;
     height: 10px;
     width: 10px;
-    border-radius: 50%;
-    background-color: rgb(86, 209, 55);
+    /* border-radius: 50%;
+    background-color: rgb(86, 209, 55); */
 }
 .center1 {
     position: absolute;
@@ -217,7 +226,13 @@ background-color: rgba(240, 237, 237, 0.091);
         /* margin: 5px; */
         text-align: center;
         margin-top: 20px;
-        
-           
-        
+}
+
+::ng-deep .mat-form-field-wrapper {
+    margin-bottom: -1.25em;
+}
+
+b{
+    font-weight: 1000;
+    color: black;
 }

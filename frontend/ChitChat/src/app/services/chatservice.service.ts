@@ -13,8 +13,14 @@ export class ChatserviceService {
   noAuthHeader = {headers : new HttpHeaders({'NoAuth':'True'})}
   private _loading = new BehaviorSubject<boolean>(false);
   public readonly loading$ = this._loading.asObservable();
+
+   private _isLoggedIn = new BehaviorSubject<boolean>(false);
+  public readonly _isLoggedIn$ = this._isLoggedIn.asObservable();
+
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    
+  }
   
   showSpinner(){
     this._loading.next(true);
@@ -28,9 +34,14 @@ export class ChatserviceService {
     return this.http.post<any>('http://localhost:8000/api/user/login/',{email : Email , password: Password}, this.noAuthHeader);
   }
 
-  SignupService(Email:String, Password:String) {
+  SignupService(Name:String,Email:String, Password:String, Interests:String[]) {
     //let url = environment.BASE_URL + '/api/user/login/';
-    return this.http.post<any>('http://localhost:8000/api/user/',{email : Email , password: Password}, this.noAuthHeader);
+    return this.http.post<any>('http://localhost:8000/api/user/', {
+      email: Email,
+      password: Password,
+      name: Name,
+      interests:Interests
+    }, this.noAuthHeader);
   }
 
   BringMyrecentChats() {
@@ -101,6 +112,19 @@ export class ChatserviceService {
       return payload.exp > Date.now()/1000;
     }
     return false;
+  }
+
+  logOut() {
+    this.hidelogOutBtn()
+    localStorage.clear()
+  }
+
+  showlogOutBtn() {
+    this._isLoggedIn.next(true);
+  }
+
+  hidelogOutBtn() {
+    this._isLoggedIn.next(false);
   }
   
 }

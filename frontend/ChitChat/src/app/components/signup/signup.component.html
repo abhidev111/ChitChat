@@ -1,3 +1,44 @@
-<div style="border: 2px solid red; width :50%; height:100px; margin: auto;">
-        bring this to center, this is sign-up (registration) form
+<!-- 
+<mat-form-field appearance="fill">
+  <mat-label>Input</mat-label>
+  <input matInput>
+</mat-form-field>
+ <mat-form-field appearance="fill">
+  <mat-label>Select</mat-label>
+  <mat-select>
+    <mat-option value="one">First option</mat-option>
+    <mat-option value="two">Second option</mat-option>
+  </mat-select>
+</mat-form-field> 
+<mat-form-field appearance="fill">
+  <mat-label>Textarea</mat-label>
+  <textarea matInput></textarea>
+</mat-form-field> -->
+
+<div class="container">
+    <div class="card d-flex align-items-center center1">
+        <form class="example-form ">
+          <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input #name type="text" matInput placeholder="Name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input #email matInput placeholder="Username">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input #password type="password" matInput placeholder="Password">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Interests</mat-label>
+                <textarea #interests  matInput placeholder="Please type in your interests (comma separated)"></textarea>
+            </mat-form-field>
+
+        </form>
+        
+        <button mat-raised-button color="primary" value="login" (click)="signup(name.value,email.value,password.value,interests.value)">Login</button> 
+    <span style="float: right;">Already have an account ? <a routerLink="../signin"> SignIn</a></span>
+    
+    </div>
 </div>

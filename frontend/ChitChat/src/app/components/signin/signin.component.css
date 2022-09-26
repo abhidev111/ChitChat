@@ -23,3 +23,10 @@
 .container{
     background-color: aliceblue;
 }
+.container button{
+    width: 100px;
+    height :40px;
+    background-color: rgb(9, 194, 133);
+    color: aliceblue;
+    border: none;
+}

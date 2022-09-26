@@ -17,7 +17,8 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card'; 
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatIconModule} from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 
 import { CommonInterceptor } from '../app/AuthGuards/common.interceptor'
@@ -42,6 +43,7 @@ import { CommonInterceptor } from '../app/AuthGuards/common.interceptor'
     MatInputModule,
     MatCardModule,
     MatProgressBarModule,
+    MatIconModule,
 
     HttpClientModule,
     FormsModule,

@@ -49,13 +49,13 @@ export class ChatpageComponent implements OnInit  {
       //this.ChatId == "" ||
       console.log("see new msg")
       console.log(newMessageRecieved)
-      if ( this.ChatId != newMessageRecieved.chat._id) {
+      if (this.ChatId != newMessageRecieved.chat._id) {
         this.chat[this.chat.findIndex((x: any) => x._id == newMessageRecieved.chat._id)].notification = true;
-        
+        this.chat[this.chat.findIndex((x: any) => x._id == newMessageRecieved.chat._id)].latestMessage.content = newMessageRecieved.content
       }
       else
-        this.messages.push(newMessageRecieved)
-      this.chat[this.chat.findIndex((x:any) => x._id == newMessageRecieved.chat._id)].latestMessage.content = newMessageRecieved.content
+        this.messages.push(newMessageRecieved);
+        this.chat[this.chat.findIndex((x:any) => x._id == newMessageRecieved.chat._id)].latestMessage.content = newMessageRecieved.content
     })
     
     await this.chatService.BringMyrecentChats().subscribe((data: any) => {
@@ -116,7 +116,8 @@ export class ChatpageComponent implements OnInit  {
       this.chatService.sndMessage(mesg, this.ChatId).subscribe((data: any) => {
         console.log(data);
         this.messages.push(data)
-        this.socket.emit('new message',data)
+        this.socket.emit('new message', data)
+        this.chat[this.chat.findIndex((x:any) => x._id == data.chat._id)].latestMessage.content = data.content
       })
     }
     else {
